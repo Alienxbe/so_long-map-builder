@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 04:36:38 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/29 23:21:55 by marykman         ###   ########.fr       */
+/*   Updated: 2023/11/30 00:19:13 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,16 @@ int	main(int argc, char **argv)
 	t_sfe			*sfe;
 	t_sc_builder	sc;
 
-	(void)argc;
-	(void)argv;
+	if (argc > 2)
+		return (1);
+
 	sfe = sfe_init(WIN_NAME, (t_point){WIN_DIM});
 	sfe_set_max_fps(sfe, 30);
 
 	ft_bzero(&sc, sizeof(t_sc_builder));
+
+	if (argc == 2)
+		load_map(argv[1], (int *)sc.tab);
 
 	sc.scene = sfe_new_scene(sfe, &sc);
 	sc.scene.f_init = &sc_builder_init;

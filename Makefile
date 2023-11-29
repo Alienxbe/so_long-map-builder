@@ -6,7 +6,7 @@
 #    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 20:20:08 by marykman          #+#    #+#              #
-#    Updated: 2023/11/29 22:04:50 by marykman         ###   ########.fr        #
+#    Updated: 2023/11/30 00:06:15 by marykman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ LIBRARIES			:=	-L./${SFE_FOLDER} -lsfe \
 # --------------------------------Source files---------------------------------
 
 NAME				:=	map_builder
-FILES				:=	main.c \
+FILES				:=	load_map.c \
+						main.c \
 						sc_builder.c \
 						sfe_load_sprite_sheet.c
 SRCS				:=	$(addprefix srcs/, ${FILES})
