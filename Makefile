@@ -6,7 +6,7 @@
 #    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 20:20:08 by marykman          #+#    #+#              #
-#    Updated: 2023/11/29 04:34:37 by marykman         ###   ########.fr        #
+#    Updated: 2023/11/29 05:09:07 by marykman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,10 +67,11 @@ LIBRARIES			:=	-L./${SFE_FOLDER} -lsfe \
 
 NAME				:=	map_builder
 FILES				:=	main.c \
+						sc_builder.c \
 						sfe_load_sprite_sheet.c
 SRCS				:=	$(addprefix srcs/, ${FILES})
 OBJS				:=	$(addprefix objs/, ${FILES:.c=.o})
-FILES				:=	
+FILES				:=	map_builder.h
 HEADERS				:=	$(addprefix includes/, ${FILES});
 
 # -----------------------------------Rules-------------------------------------
