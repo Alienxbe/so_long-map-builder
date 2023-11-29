@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 04:36:38 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/29 17:27:25 by marykman         ###   ########.fr       */
+/*   Updated: 2023/11/29 23:21:55 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,30 @@ static void	print_map(int tab[16][16])
 
 static int	on_key_down(int key, t_sc_builder *sc)
 {
-	if (key == 53 || key == 65307)
+	if (key == SFE_KEY_ESC)
 		sc->running = false;
-	else if (key == 99 && sc->selected_tile < 256)
+	else if (key == SFE_KEY_C && sc->selected_tile < 256)
 		sc->selected_tile++;
-	else if (key == 118 && sc->selected_tile < 256 - 3)
+	else if (key == SFE_KEY_V && sc->selected_tile < 256 - 3)
 		sc->selected_tile += 3;
-	else if (key == 120 && sc->selected_tile  > 1)
+	else if (key == SFE_KEY_X && sc->selected_tile  > 1)
 		sc->selected_tile--;
-	else if (key == 122 && sc->selected_tile > 3)
+	else if (key == SFE_KEY_Z && sc->selected_tile > 3)
 		sc->selected_tile -= 3;
-	else if (key == 65363 && sc->cursor.x < 15) // Droite
+	else if (key == SFE_KEY_RIGHT && sc->cursor.x < 15) // Droite
 		sc->cursor.x++;
-	else if (key == 65361 && sc->cursor.x > 0) // Gauche
+	else if (key == SFE_KEY_LEFT && sc->cursor.x > 0) // Gauche
 		sc->cursor.x--;
-	else if (key == 65362 && sc->cursor.y > 0) // Haut
+	else if (key == SFE_KEY_UP && sc->cursor.y > 0) // Haut
 		sc->cursor.y--;
-	else if (key == 65364 && sc->cursor.y < 15) // Bas
+	else if (key == SFE_KEY_DOWN && sc->cursor.y < 15) // Bas
 		sc->cursor.y++;
-	else if (key == 32) // Space
+	else if (key == SFE_KEY_SPACE) // Space
 		sc->tab[sc->cursor.y][sc->cursor.x] = sc->selected_tile;
-	else if (key == 65288)
+	else if (key == SFE_KEY_DEL)
 		sc->tab[sc->cursor.y][sc->cursor.x] = 0;
-	else if (key == 65293)
+	else if (key == SFE_KEY_ENTER)
 		print_map(sc->tab);
-	ft_printf("Tile selected: %x\n", sc->selected_tile);
 	ft_printf("Key pressed: %d\n", key);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 05:00:33 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/29 20:48:26 by marykman         ###   ########.fr       */
+/*   Updated: 2023/11/29 23:29:07 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ int	sc_builder_update(t_sc_builder *sc)
 	}
 	
 	// Printing cursor
-	sfe_pixel_fill(*sc->scene.img, (t_area){{sc->cursor.x * 32, sc->cursor.y * 32 - 5}, {(sc->cursor.x + 1) * 32, sc->cursor.y * 32}}, 0xFF0000);
-	sfe_pixel_fill(*sc->scene.img, (t_area){{sc->cursor.x * 32, (sc->cursor.y + 1) * 32}, {(sc->cursor.x + 1) * 32, (sc->cursor.y + 1) * 32 + 5}}, 0xFF0000);
-	sfe_pixel_fill(*sc->scene.img, (t_area){{sc->cursor.x * 32 - 5, sc->cursor.y * 32}, {sc->cursor.x * 32, (sc->cursor.y + 1) * 32}}, 0xFF0000);
-	sfe_pixel_fill(*sc->scene.img, (t_area){{(sc->cursor.x + 1) * 32, sc->cursor.y * 32}, {(sc->cursor.x + 1) * 32 + 5, (sc->cursor.y + 1) * 32}}, 0xFF0000);
+	sfe_pixel_fill(*sc->scene.img, (t_area){{sc->cursor.x * 32, sc->cursor.y * 32}, {(sc->cursor.x + 1) * 32, sc->cursor.y * 32 + 5}}, 0xFF0000);
+	sfe_pixel_fill(*sc->scene.img, (t_area){{sc->cursor.x * 32, (sc->cursor.y + 1) * 32 - 5}, {(sc->cursor.x + 1) * 32, (sc->cursor.y + 1) * 32}}, 0xFF0000);
+	sfe_pixel_fill(*sc->scene.img, (t_area){{sc->cursor.x * 32, sc->cursor.y * 32}, {sc->cursor.x * 32 + 5, (sc->cursor.y + 1) * 32}}, 0xFF0000);
+	sfe_pixel_fill(*sc->scene.img, (t_area){{(sc->cursor.x + 1) * 32 - 5, sc->cursor.y * 32}, {(sc->cursor.x + 1) * 32, (sc->cursor.y + 1) * 32}}, 0xFF0000);
 	// ft_printf("Fps: %d\n", sc->sfe->fps);
 	return (sc->running);
 }
