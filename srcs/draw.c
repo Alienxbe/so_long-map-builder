@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:35:18 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 14:18:17 by marykman         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:26:39 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,31 @@
 
 void	draw_tile_selector(t_sc_builder *sc)
 {
-	int		selected_value = sc->selected_tile;
-	t_img	selected = sfe_image_resize(sc->sfe->mlx_ptr, sc->assets[selected_value], (t_point){64, 64});
-
+	// static int		selected_value;
+	// static t_img	selected;
+	// if (selected_value != sc->selected_tile)
+	// {
+	// 	selected_value = sc->selected_tile;
+		
+	// }
 	// Draw background
 	sfe_pixel_fill(*sc->scene.img, (t_area){{0, 512}, {512, 612}}, 0x808080);
 	sfe_pixel_fill(*sc->scene.img, (t_area){{256 - 32 - 5, 512 + 18 - 5}, {256 + 32 + 5, 512 + 18 + 64 + 5}}, 0x404040);
-	sfe_image_cpy(selected, *sc->scene.img, (t_point){256 - 32, 512 + 18});
+	// sfe_image_cpy(selected, *sc->scene.img, (t_point){256 - 32, 512 + 18});
 
 	int	y = 512 + 34;
 	for (int i = 0; i < 3; i++)
 	{
-		if (selected_value - 1 - i >= 1)
-			sfe_image_cpy(sc->assets[selected_value - 1 - i], *sc->scene.img, (t_point){256 - 85 - 32 - i * 53, y});
+		if (sc->selected_tile_value - 1 - i >= 1)
+			sfe_image_cpy(sc->assets[sc->selected_tile_value - 1 - i], *sc->scene.img, (t_point){256 - 85 - 32 - i * 53, y});
 		else
 			sfe_pixel_fill(*sc->scene.img, (t_area){{256 - 85 - 32 - i * 53, y}, {256 - 85 - 32 - i * 53 + 32, y + 32}}, 0x808080);
-		if (selected_value + 1 + i < 256)
-			sfe_image_cpy(sc->assets[selected_value + 1 + i], *sc->scene.img, (t_point){256 + 85 + 53 * i, y});
+		if (sc->selected_tile_value + 1 + i < 256)
+			sfe_image_cpy(sc->assets[sc->selected_tile_value + 1 + i], *sc->scene.img, (t_point){256 + 85 + 53 * i, y});
 		else
 			sfe_pixel_fill(*sc->scene.img, (t_area){{256 + 85 + 53 * i, y}, {256 + 85 + 53 * i + 32, y + 32}}, 0x808080);
 	}
-	sfe_image_destroy(sc->sfe->mlx_ptr, selected);
+	// sfe_image_destroy(sc->sfe->mlx_ptr, selected);
 }
 
 void	draw_map(t_sc_builder *sc)

@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 04:44:47 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 14:09:44 by marykman         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:41:31 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,36 @@
 # define WIN_NAME	"so_long map builder"
 # define WIN_DIM	512, 612
 
+typedef enum e_keybinds
+{
+	KEYBIND_Z,
+	KEYBIND_X,
+	KEYBIND_C,
+	KEYBIND_V,
+	KEYBIND_LEFT,
+	KEYBIND_RIGHT,
+	KEYBIND_UP,
+	KEYBIND_DOWN,
+	KEYBIND_ENTER,
+	KEYBIND_SPACE,
+	KEYBIND_DEL,
+	KEYBIND_ESC,
+	KEYBIND_LEN
+}	t_keybinds;
+
 typedef struct s_sc_builder
 {
 	t_sfe	*sfe;
 	t_scene	scene;
 	t_bool	running;
 
-	t_img	*assets;
-	int		tab[16][16]; // [y][x]
-	int		selected_tile;
-	t_point	cursor;
+	t_img	*assets;					// Sprite
+	int		tab[16][16];				// Map[y][x]
+	int		selected_tile_value;		// Tile selector
+	t_img	selected_tile;				// img of the selector
+	t_point	cursor;						// Cursor position
+	int		active_keys[KEYBIND_LEN];		// List of every key pressed
+	int		keys[KEYBIND_LEN];		// List of every keybind
 }	t_sc_builder;
 
 typedef t_img	(*t_filter)(t_sfe *sfe, t_img img);
@@ -45,9 +65,22 @@ int	sc_builder_init(t_sc_builder *sc);
 int	sc_builder_update(t_sc_builder *sc);
 int	sc_builder_destroy(t_sc_builder *sc);
 
+// Update
+void	update(t_sc_builder *sc);
+
 // Draw functions
 void	draw_tile_selector(t_sc_builder *sc);
 void	draw_map(t_sc_builder *sc);
 void	draw_cursor(t_sc_builder *sc, t_color color);
+
+// Events functions
+int	on_key_down(int key, t_sc_builder *sc);
+int	on_key_up(int key, t_sc_builder *sc);
+
+// Tile selector
+void	tile_selector_rotate(t_sc_builder *sc, int val);
+
+// Cursor
+void	cursor_move(t_sc_builder *sc, int x, int y);
 
 #endif

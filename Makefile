@@ -6,7 +6,7 @@
 #    By: marykman <marykman@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 20:20:08 by marykman          #+#    #+#              #
-#    Updated: 2023/11/30 14:09:31 by marykman         ###   ########.fr        #
+#    Updated: 2023/11/30 18:28:34 by marykman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,11 +68,15 @@ LIBRARIES			:=	-L./${SFE_FOLDER} -lsfe \
 # --------------------------------Source files---------------------------------
 
 NAME				:=	map_builder
-FILES				:=	draw.c \
+FILES				:=	cursor.c \
+						draw.c \
+						events.c \
 						load_map.c \
 						main.c \
 						sc_builder.c \
-						sfe_load_sprite_sheet.c
+						sfe_load_sprite_sheet.c \
+						tile_selector.c \
+						update.c
 SRCS				:=	$(addprefix srcs/, ${FILES})
 OBJS				:=	$(addprefix objs/, ${FILES:.c=.o})
 FILES				:=	map_builder.h
