@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 04:36:38 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 00:19:13 by marykman         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:18:26 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	on_key_down(int key, t_sc_builder *sc)
 		sc->tab[sc->cursor.y][sc->cursor.x] = 0;
 	else if (key == SFE_KEY_ENTER)
 		print_map(sc->tab);
-	ft_printf("Key pressed: %d\n", key);
+	// ft_printf("Key pressed: %d\n", key);
 	return (1);
 }
 

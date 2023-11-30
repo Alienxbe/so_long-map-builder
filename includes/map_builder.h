@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 04:44:47 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 00:18:59 by marykman         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:09:44 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ typedef struct s_sc_builder
 	t_point	cursor;
 }	t_sc_builder;
 
-
 typedef t_img	(*t_filter)(t_sfe *sfe, t_img img);
 
 t_img	*sfe_load_sprite_sheet(t_sfe *sfe, char *filename, t_point sprite_size,
@@ -41,8 +40,14 @@ t_img	*sfe_load_sprite_sheet(t_sfe *sfe, char *filename, t_point sprite_size,
 
 int	load_map(char *filename, int *tab);
 
+// Scene special callback
 int	sc_builder_init(t_sc_builder *sc);
 int	sc_builder_update(t_sc_builder *sc);
 int	sc_builder_destroy(t_sc_builder *sc);
+
+// Draw functions
+void	draw_tile_selector(t_sc_builder *sc);
+void	draw_map(t_sc_builder *sc);
+void	draw_cursor(t_sc_builder *sc, t_color color);
 
 #endif
