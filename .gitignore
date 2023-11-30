@@ -37,7 +37,6 @@
 *.hex
 
 map_builder
-maps/
 
 # Debug files
 *.dSYM/
