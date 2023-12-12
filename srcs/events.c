@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:01:29 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 19:00:49 by marykman         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:25:20 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "sfe_event.h"
 #include "map_builder.h"
 
-static void	print_map(int tab[16][16])
+static void	print_map(t_sc_builder *sc)
 {
 	int		fd;
 	char	*line;
@@ -35,7 +35,7 @@ static void	print_map(int tab[16][16])
 	for (int y = 0; y < 16; y++)
 	{
 		for (int x = 0; x < 16; x++)
-			ft_fprintf(fd, "%02x", tab[y][x]);
+			ft_fprintf(fd, "%02x", sc->tab[y][x]);
 		ft_fprintf(fd, "\n");
 	}
 	if (close(fd) < 0)
@@ -46,8 +46,6 @@ static void	print_map(int tab[16][16])
 
 int	on_key_down(int key, t_sc_builder *sc)
 {
-	int	i;
-
 	if (key == SFE_KEY_ESC)
 		sc->running = false;
 	else if (key == SFE_KEY_SPACE)
@@ -55,21 +53,7 @@ int	on_key_down(int key, t_sc_builder *sc)
 	else if (key == SFE_KEY_DEL)
 		sc->tab[sc->cursor.y][sc->cursor.x] = 0;
 	else if (key == SFE_KEY_ENTER)
-		print_map(sc->tab);
-	i = -1;
-	while (++i < KEYBIND_LEN)
-		if (sc->keys[i] == key && !sc->active_keys[i])
-			sc->active_keys[i] = 1;
-	return (1);
-}
-
-int	on_key_up(int key, t_sc_builder *sc)
-{
-	int	i;
-
-	i = -1;
-	while (++i < KEYBIND_LEN)
-		if (sc->keys[i] == key)
-			sc->active_keys[i] = 0;
+		print_map(sc);
+	update(sc, key);
 	return (1);
 }

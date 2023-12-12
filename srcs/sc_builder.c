@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 05:00:33 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 19:06:26 by marykman         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:19:04 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,6 @@ static t_img	filter(t_sfe *sfe, t_img img)
 	return (new);
 }
 
-static void	init_keys(t_sc_builder *sc)
-{
-	sc->keys[KEYBIND_Z] = SFE_KEY_Z;
-	sc->keys[KEYBIND_X] = SFE_KEY_X;
-	sc->keys[KEYBIND_C] = SFE_KEY_C;
-	sc->keys[KEYBIND_V] = SFE_KEY_V;
-	sc->keys[KEYBIND_LEFT] = SFE_KEY_LEFT;
-	sc->keys[KEYBIND_RIGHT] = SFE_KEY_RIGHT;
-	sc->keys[KEYBIND_UP] = SFE_KEY_UP;
-	sc->keys[KEYBIND_DOWN] = SFE_KEY_DOWN;
-	sc->keys[KEYBIND_ENTER] = SFE_KEY_ENTER;
-	sc->keys[KEYBIND_SPACE] = SFE_KEY_SPACE;
-	sc->keys[KEYBIND_DEL] = SFE_KEY_DEL;
-	sc->keys[KEYBIND_ESC] = SFE_KEY_ESC;
-}
-
 int	sc_builder_init(t_sc_builder *sc)
 {
 	ft_printf("Init scene main\n");
@@ -57,13 +41,12 @@ int	sc_builder_init(t_sc_builder *sc)
 			&filter);
 	if (!sc->assets)
 		return (0);
-	sc->selected_tile_value = 1;
+	sc->selected_tile_value = 3;
 	sc->selected_tile = sfe_image_resize(
 			sc->sfe->mlx_ptr,
 			sc->assets[sc->selected_tile_value],
 			(t_point){64, 64});
 	sc->cursor = (t_point){0};
-	init_keys(sc);
 	return (1);
 }
 
@@ -81,7 +64,6 @@ int		sc_builder_destroy(t_sc_builder *sc)
 
 int	sc_builder_update(t_sc_builder *sc)
 {
-	update(sc);
 	draw_tile_selector(sc);
 	draw_map(sc);
 	draw_cursor(sc, 0xFF0000);

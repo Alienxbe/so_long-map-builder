@@ -6,28 +6,39 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:35:18 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 18:26:39 by marykman         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:11:04 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_sfe.h"
 #include "sfe_pixel.h"
 #include "map_builder.h"
+#include "ft_printf.h"
+
+static void	draw_selected_tile(t_sc_builder *sc)
+{
+	static int	old_selection;
+
+	if (old_selection != sc->selected_tile_value)
+	{
+		ft_printf("Moving selection\nOld: %-5d| New: %d\n", old_selection, sc->selected_tile_value);
+		old_selection = sc->selected_tile_value;
+		sfe_image_destroy(sc->sfe->mlx_ptr, sc->selected_tile);
+		sc->selected_tile = sfe_image_resize(
+			sc->sfe->mlx_ptr,
+			sc->assets[sc->selected_tile_value],
+			(t_point){64, 64});
+	}
+	sfe_image_cpy(sc->selected_tile, *sc->scene.img, (t_point){256 - 32, 512 + 18});
+}
 
 void	draw_tile_selector(t_sc_builder *sc)
 {
-	// static int		selected_value;
-	// static t_img	selected;
-	// if (selected_value != sc->selected_tile)
-	// {
-	// 	selected_value = sc->selected_tile;
-		
-	// }
 	// Draw background
 	sfe_pixel_fill(*sc->scene.img, (t_area){{0, 512}, {512, 612}}, 0x808080);
 	sfe_pixel_fill(*sc->scene.img, (t_area){{256 - 32 - 5, 512 + 18 - 5}, {256 + 32 + 5, 512 + 18 + 64 + 5}}, 0x404040);
-	// sfe_image_cpy(selected, *sc->scene.img, (t_point){256 - 32, 512 + 18});
-
+	
+	// Draw side tiles
 	int	y = 512 + 34;
 	for (int i = 0; i < 3; i++)
 	{
@@ -40,7 +51,7 @@ void	draw_tile_selector(t_sc_builder *sc)
 		else
 			sfe_pixel_fill(*sc->scene.img, (t_area){{256 + 85 + 53 * i, y}, {256 + 85 + 53 * i + 32, y + 32}}, 0x808080);
 	}
-	// sfe_image_destroy(sc->sfe->mlx_ptr, selected);
+	draw_selected_tile(sc);
 }
 
 void	draw_map(t_sc_builder *sc)

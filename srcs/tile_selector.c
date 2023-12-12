@@ -6,11 +6,12 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:07:56 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 18:10:34 by marykman         ###   ########.fr       */
+/*   Updated: 2023/12/12 10:52:52 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_builder.h"
+#include "t_sfe.h"
 
 void	tile_selector_rotate(t_sc_builder *sc, int val)
 {

@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 04:36:38 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 18:28:53 by marykman         ###   ########.fr       */
+/*   Updated: 2023/12/12 11:18:54 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
 
 	sfe_set_active_scene(sfe, &sc.scene);
 	sfe_hook_on_keydown(sfe->win, &on_key_down, &sc);
-	sfe_hook_on_keyup(sfe->win, &on_key_up, &sc);
 	sfe_loop(sfe);
 	return (0);
 }
