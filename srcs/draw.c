@@ -6,14 +6,13 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:35:18 by marykman          #+#    #+#             */
-/*   Updated: 2023/12/12 11:11:04 by marykman         ###   ########.fr       */
+/*   Updated: 2023/12/12 15:43:15 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_sfe.h"
 #include "sfe_pixel.h"
 #include "map_builder.h"
-#include "ft_printf.h"
 
 static void	draw_selected_tile(t_sc_builder *sc)
 {
@@ -21,7 +20,6 @@ static void	draw_selected_tile(t_sc_builder *sc)
 
 	if (old_selection != sc->selected_tile_value)
 	{
-		ft_printf("Moving selection\nOld: %-5d| New: %d\n", old_selection, sc->selected_tile_value);
 		old_selection = sc->selected_tile_value;
 		sfe_image_destroy(sc->sfe->mlx_ptr, sc->selected_tile);
 		sc->selected_tile = sfe_image_resize(
