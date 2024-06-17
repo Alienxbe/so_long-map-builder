@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 05:00:33 by marykman          #+#    #+#             */
-/*   Updated: 2023/12/12 11:19:04 by marykman         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:45:38 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,29 @@ static t_img	filter(t_sfe *sfe, t_img img)
 	return (new);
 }
 
+static void	set_assets_special(t_sc_builder *sc, t_img *assets)
+{
+	assets[ASSET_PLAYER] = sc->assets_base[0xf0];
+	assets[ASSET_STRAWBERRY] = sc->assets_base[0xd0];
+	assets[ASSET_WALL] = sc->assets_base[0xd1];
+	assets[ASSET_EXIT] = sc->assets_base[0x0];
+}
+
 int	sc_builder_init(t_sc_builder *sc)
 {
 	ft_printf("Init scene main\n");
 	sc->running = true;
-	sc->assets = sfe_load_sprite_sheet(
+	sc->assets_base = sfe_load_sprite_sheet(
 			sc->sfe,
 			F_SPRITE_SHEET,
 			(t_point){16, 16},
 			&filter);
+	set_assets_special(sc, sc->assets_special);
+	sc->assets = sc->assets_base;
+	ft_printf("Hello world\n");
 	if (!sc->assets)
 		return (0);
-	sc->selected_tile_value = 3;
+	sc->selected_tile_value = 0;
 	sc->selected_tile = sfe_image_resize(
 			sc->sfe->mlx_ptr,
 			sc->assets[sc->selected_tile_value],

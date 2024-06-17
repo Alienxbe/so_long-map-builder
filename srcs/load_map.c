@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 23:39:09 by marykman          #+#    #+#             */
-/*   Updated: 2023/11/30 17:22:41 by marykman         ###   ########.fr       */
+/*   Updated: 2024/06/14 07:47:35 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,19 @@
 #include "ft_math.h"
 #include "get_next_line.h"
 #include "map_builder.h"
+
+static int	load_special(const char c)
+{
+	if (c == 'P')
+		return (0xf0);
+	else if (c == 'C')
+		return (0xd0);
+	else if (c == 'W')
+		return (0xd1);
+	else if (c == 'E')
+		return (0);
+	return (0);
+}
 
 int	load_map(char *filename, int *tab)
 {
@@ -42,7 +55,12 @@ int	load_map(char *filename, int *tab)
 		{
 			x = -1;
 			while (++x < 16)
-				*(tab + x + 16 * y) = ft_atoi_base_l(line + x * 2, BASE_HEXA_L, 2);
+			{
+				if (line[x * 2] == 'x')
+					*(tab + x + 16 * y) = load_special(line[x * 2 + 1]);
+				else
+					*(tab + x + 16 * y) = ft_atoi_base_l(line + x * 2, BASE_HEXA_L, 2);
+			}
 		}
 		free(line);
 	}

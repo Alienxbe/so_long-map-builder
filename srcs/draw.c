@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:35:18 by marykman          #+#    #+#             */
-/*   Updated: 2023/12/12 15:43:15 by marykman         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:55:40 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	draw_tile_selector(t_sc_builder *sc)
 			sfe_image_cpy(sc->assets[sc->selected_tile_value - 1 - i], *sc->scene.img, (t_point){256 - 85 - 32 - i * 53, y});
 		else
 			sfe_pixel_fill(*sc->scene.img, (t_area){{256 - 85 - 32 - i * 53, y}, {256 - 85 - 32 - i * 53 + 32, y + 32}}, 0x808080);
-		if (sc->selected_tile_value + 1 + i < 256)
+		if ((sc->assets == sc->assets_base && sc->selected_tile_value + 1 + i < 256)
+			|| (sc->assets == sc->assets_special && sc->selected_tile_value + 1 + i < ASSETS_S_MAX))
 			sfe_image_cpy(sc->assets[sc->selected_tile_value + 1 + i], *sc->scene.img, (t_point){256 + 85 + 53 * i, y});
 		else
 			sfe_pixel_fill(*sc->scene.img, (t_area){{256 + 85 + 53 * i, y}, {256 + 85 + 53 * i + 32, y + 32}}, 0x808080);
@@ -65,7 +66,7 @@ void	draw_map(t_sc_builder *sc)
 		{
 			if (sc->tab[y][x])
 				sfe_image_cpy(
-					sc->assets[sc->tab[y][x]],
+					sc->assets_base[sc->tab[y][x]],
 					*sc->scene.img,
 					(t_point){x * 32, y * 32});
 			else

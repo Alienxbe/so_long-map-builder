@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 04:44:47 by marykman          #+#    #+#             */
-/*   Updated: 2023/12/12 11:22:09 by marykman         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:38:42 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,24 @@
 # define WIN_NAME	"so_long map builder"
 # define WIN_DIM	512, 612
 
+typedef enum e_assets_s
+{
+	ASSET_PLAYER = 1,
+	ASSET_STRAWBERRY,
+	ASSET_WALL,
+	ASSET_EXIT,
+	ASSETS_S_MAX
+}	t_assets_s;
+
 typedef struct s_sc_builder
 {
 	t_sfe	*sfe;
 	t_scene	scene;
 	t_bool	running;
 
-	t_img	*assets;					// Sprite
+	t_img	*assets_base;				// Sprite
+	t_img	assets_special[ASSETS_S_MAX];
+	t_img	*assets;
 	int		tab[16][16];				// Map[y][x]
 	int		selected_tile_value;		// Tile selector
 	t_img	selected_tile;				// img of the selector
