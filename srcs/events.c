@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 18:01:29 by marykman          #+#    #+#             */
-/*   Updated: 2024/06/14 19:48:42 by marykman         ###   ########.fr       */
+/*   Updated: 2024/06/24 08:16:53 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	on_key_down(int key, t_sc_builder *sc)
 			sc->tab[sc->cursor.y][sc->cursor.x] = 0xd0;
 		else if (sc->selected_tile_value == ASSET_WALL)
 			sc->tab[sc->cursor.y][sc->cursor.x] = 0xd1;
+		else if (sc->selected_tile_value == ASSET_CRISTAL)
+			sc->tab[sc->cursor.y][sc->cursor.x] = 0xd2;
 	}
 	else if (key == SFE_KEY_DEL)
 		sc->tab[sc->cursor.y][sc->cursor.x] = 0;

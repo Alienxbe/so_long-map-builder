@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 05:00:33 by marykman          #+#    #+#             */
-/*   Updated: 2024/06/12 21:45:38 by marykman         ###   ########.fr       */
+/*   Updated: 2024/06/24 08:11:48 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	set_assets_special(t_sc_builder *sc, t_img *assets)
 	assets[ASSET_STRAWBERRY] = sc->assets_base[0xd0];
 	assets[ASSET_WALL] = sc->assets_base[0xd1];
 	assets[ASSET_EXIT] = sc->assets_base[0x0];
+	assets[ASSET_CRISTAL] = sc->assets_base[0xd2];
 }
 
 int	sc_builder_init(t_sc_builder *sc)

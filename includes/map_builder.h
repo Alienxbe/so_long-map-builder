@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 04:44:47 by marykman          #+#    #+#             */
-/*   Updated: 2024/06/12 21:38:42 by marykman         ###   ########.fr       */
+/*   Updated: 2024/06/24 08:10:02 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef enum e_assets_s
 	ASSET_STRAWBERRY,
 	ASSET_WALL,
 	ASSET_EXIT,
+	ASSET_CRISTAL,
 	ASSETS_S_MAX
 }	t_assets_s;
 
