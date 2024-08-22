@@ -6,7 +6,7 @@
 /*   By: marykman <marykman@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 23:39:09 by marykman          #+#    #+#             */
-/*   Updated: 2024/06/14 07:47:35 by marykman         ###   ########.fr       */
+/*   Updated: 2024/08/21 04:40:47 by marykman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	load_special(const char c)
 	else if (c == 'W')
 		return (0xd1);
 	else if (c == 'E')
-		return (0);
+		return (0xc0);
 	return (0);
 }
 
